@@ -26,6 +26,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        TextView name = (TextView)findViewById(R.id.name);
+        String a = getIntent().getStringExtra("name");
+        if(a!=null){
+            name.setText(a);
+        }
+
         ImageView text1 = (ImageView)findViewById(R.id.text1);
         ImageView text2 = (ImageView)findViewById(R.id.text2);
         ImageView text3 = (ImageView)findViewById(R.id.text3);
@@ -34,10 +40,25 @@ public class MainActivity extends AppCompatActivity
         text1.setImageResource(R.drawable.text1);
         text3.setImageResource(R.drawable.text3);
         text4.setImageResource(R.drawable.text4);
-        final Intent in = new Intent(this,Shop.class);
+        final Intent in = new Intent(this,Shops.class);
         text1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                in.putExtra("id",1);
+                startActivity(in);
+            }
+        });
+        text2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in.putExtra("id",2);
+                startActivity(in);
+            }
+        });
+        text3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                in.putExtra("id",3);
                 startActivity(in);
             }
         });
@@ -96,10 +117,11 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.shop) {
-            Intent in = new Intent(this,Shop.class);
+            Intent in = new Intent(this,Shops.class);
             startActivity(in);
         } else if (id == R.id.diss) {
-
+            Intent in = new Intent(this,Diss.class);
+            startActivity(in);
         } else if (id == R.id.news) {
             Intent in = new Intent(this,News.class);
             startActivity(in);
